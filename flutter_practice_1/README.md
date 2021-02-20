@@ -1,6 +1,6 @@
 # flutter_practice_1
 
-A new Flutter application.
+Default flutter application when you create a new flutter pproject.
 
 ## Getting Started
 
