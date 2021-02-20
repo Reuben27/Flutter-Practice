@@ -20,7 +20,7 @@ class _AuthenticationState extends State<Authentication> {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
-          color: Colors.blueAccent,
+          color: Colors.greenAccent,
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -28,16 +28,18 @@ class _AuthenticationState extends State<Authentication> {
             Container(
               width: MediaQuery.of(context).size.width / 1.3,
               child: TextFormField(
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.black),
                 controller: _emailField,
                 decoration: InputDecoration(
                   hintText: "xyz@gmail.com",
                   hintStyle: TextStyle(
-                    color: Colors.white,
+                    color: Colors.black,
+                    fontSize: 15,
                   ),
                   labelText: "Email",
                   labelStyle: TextStyle(
-                    color: Colors.white,
+                    color: Colors.black,
+                    fontSize: 22,
                   ),
                 ),
               ),
@@ -48,17 +50,19 @@ class _AuthenticationState extends State<Authentication> {
             Container(
               width: MediaQuery.of(context).size.width / 1.3,
               child: TextFormField(
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.black),
                 controller: _passwordField,
                 obscureText: true,
                 decoration: InputDecoration(
                   hintText: "password",
                   hintStyle: TextStyle(
-                    color: Colors.white,
+                    color: Colors.black,
+                    fontSize: 15,
                   ),
                   labelText: "Password",
                   labelStyle: TextStyle(
-                    color: Colors.white,
+                    color: Colors.black,
+                    fontSize: 22,
                   ),
                 ),
               ),

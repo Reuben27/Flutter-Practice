@@ -17,6 +17,7 @@ class _HomeViewState extends State<HomeView> {
   double tether = 0.0;
 
   @override
+  // ignore: must_call_super
   initState() {
     updateValues();
   }
@@ -30,12 +31,23 @@ class _HomeViewState extends State<HomeView> {
   
   @override
   Widget build(BuildContext context) {
+    getValue(String id, double amount) {
+      if (id == "bitcoin") {
+        return (bitcoin * amount).toStringAsFixed(2);
+      } else if (id == "ethereum") {
+        return (ethereum * amount).toStringAsFixed(2);
+      } else {
+        return (tether * amount).toStringAsFixed(2);
+      }
+    }
+
     return Scaffold(
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height, 
+        alignment: Alignment.center,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Colors.greenAccent,
         ),
         child: StreamBuilder(
           stream: FirebaseFirestore.instance
@@ -52,14 +64,43 @@ class _HomeViewState extends State<HomeView> {
 
             return ListView(
               children: snapshot.data.docs.map((document) {
-                return Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Text("Coin Name: ${document.id}"),
-                      Text("Amount Owned: ${document.data()['Amount']}"),
-                    ],
+                return Padding(
+                  child: Container(
+                    width: MediaQuery.of(context).size.width/1.3,
+                    height: MediaQuery.of(context).size.height/12,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15.0),
+                      color: Colors.white,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text("Coin: ${document.id}" , 
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.black,
+                          ),
+                        ),
+                        Text("Amount: \$${getValue(document.id, document.data()['Amount'])}", 
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.black,
+                          ),
+                        ),
+                        IconButton(
+                          icon: Icon(
+                            Icons.delete,
+                            color: Colors.red,
+                          ), 
+                          onPressed: (){
+
+                          },
+                        )
+                      ],
+                    ),
                   ),
+                  padding: EdgeInsets.only(top: 5.0, left: 15.0, right: 15.0),
                 );
               }).toList(),
             );
@@ -71,8 +112,8 @@ class _HomeViewState extends State<HomeView> {
           Navigator.push(context, MaterialPageRoute(builder: (context) => AddView(),
           ));
         },
-        child: Icon(Icons.add, color: Colors.white),
-        backgroundColor: Colors.blue,
+        child: Icon(Icons.add, color: Colors.green[800]),
+        backgroundColor: Colors.white,
       ),
     );
   }
