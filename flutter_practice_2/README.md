@@ -1,6 +1,6 @@
 # flutter_practice_2
 
-A new Flutter application.
+A minimal Flutter application. Based on lessons 6, 7, 8 of Flutter Tutorial for Beginners by Net Ninja
 
 ## Getting Started
 
