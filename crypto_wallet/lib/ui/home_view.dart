@@ -1,3 +1,4 @@
+import 'package:crypto_wallet/net/flutterfire.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -93,8 +94,8 @@ class _HomeViewState extends State<HomeView> {
                             Icons.delete,
                             color: Colors.red,
                           ), 
-                          onPressed: (){
-
+                          onPressed: () async {
+                            await removeCoin(document.id);
                           },
                         )
                       ],
