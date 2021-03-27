@@ -17,6 +17,16 @@
     <exclude-output />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/gen" isTestSource="false" generated="true" />
+      <excludeFolder url="file://$MODULE_DIR$/crypto_wallet/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/crypto_wallet/build" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_practice_1/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_practice_1/build" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_practice_2/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_practice_2/build" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_practice_googlemap/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_practice_googlemap/build" />
+      <excludeFolder url="file://$MODULE_DIR$/instagram_stories/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/instagram_stories/build" />
     </content>
     <orderEntry type="jdk" jdkName="Android API 29 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
