@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_practice_firestore/screens/booking.dart';
+import 'package:flutter_practice_firestore/screens/sports.dart';
 
 class TableTennisRooms extends StatefulWidget {
   @override
@@ -51,8 +53,19 @@ class _DisplayDataState extends State<DisplayData> {
           children: snapshot.data.docs.map((DocumentSnapshot document) {
             return GestureDetector(
               onTap: () {
+                selectedroomid = document.id;
+                selectedroomname = document.data()['roomname'];
+                selectedroomtype = "TableTennisRooms";
+                print("");
+                print("**************************");
                 print(document.data()['roomname']);
                 print(document.data()['bookedslots']);
+                 print("**************************");
+                print("");
+                Navigator.push(context, 
+                    MaterialPageRoute(builder: (context) => Booking(),
+                    ),
+                  );
               },
               child: Container(
                 margin: EdgeInsets.fromLTRB(15.0, 15.0, 15.0, 0),

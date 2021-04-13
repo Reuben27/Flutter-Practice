@@ -4,9 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_practice_firestore/screens/sports.dart';
 import 'package:flutter_practice_firestore/screens/booking.dart';
 
-String selectedroomid = "";
-String selectedroomname = "";
-
 class SquashRooms extends StatefulWidget {
   @override
   _SquashRoomsState createState() => _SquashRoomsState();
@@ -58,6 +55,7 @@ class _DisplayDataState extends State<DisplayData> {
               onTap: () {
                 selectedroomid = document.id;
                 selectedroomname = document.data()['roomname'];
+                selectedroomtype = "SquashRooms";
                 print("");
                 print("**************************");
                 print(selectedsportid);

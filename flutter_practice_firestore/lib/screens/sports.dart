@@ -5,6 +5,9 @@ import 'package:flutter_practice_firestore/screens/squashrooms.dart';
 import 'package:flutter_practice_firestore/screens/tabletennisrooms.dart';
 
 String selectedsportid = "";
+String selectedroomid = "";
+String selectedroomname = "";
+String selectedroomtype = "";
 
 class Sports extends StatefulWidget {
   @override

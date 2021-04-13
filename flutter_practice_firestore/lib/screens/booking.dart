@@ -1,9 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_practice_firestore/screens/sports.dart';
 import 'package:flutter_practice_firestore/screens/squashrooms.dart';
+import 'package:flutter_practice_firestore/screens/tabletennisrooms.dart';
 
 var bookedSlots = {};
-CollectionReference squashrooms = FirebaseFirestore.instance.collection('SquashRooms');
 
 class Booking extends StatefulWidget {
   @override
@@ -26,6 +27,7 @@ class _BookingState extends State<Booking> {
 
   @override
   Widget build(BuildContext context) {    
+  CollectionReference currentroom = FirebaseFirestore.instance.collection(selectedroomtype);
 
     return Scaffold(
       appBar: AppBar(
@@ -99,7 +101,9 @@ class _BookingState extends State<Booking> {
           print("**************************");
           print("");
           //get data
-          squashrooms.doc(selectedroomid).get().then((DocumentSnapshot documentSnapshot) {
+          print(selectedroomid);
+          print(selectedroomtype);
+          currentroom.doc(selectedroomid).get().then((DocumentSnapshot documentSnapshot) {
               if (documentSnapshot.exists) {
                 print("");
                 print("**************************");
@@ -110,7 +114,26 @@ class _BookingState extends State<Booking> {
                 print("");
 
                 //updater(starttime, endtime, numberofslots);
-                checker(starttime, endtime, numberofslots);
+                if(checker(starttime, endtime, numberofslots) == 0){
+                  return showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        content: Text('Room could not be booked. Try again.'),
+                      );
+                    },
+                  );
+                }
+                else{
+                  return showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        content: Text('Room has been booked!'),
+                      );
+                    },
+                  );
+                }
 
               } else {
                 print('Document does not exist on the database');
@@ -126,24 +149,29 @@ class _BookingState extends State<Booking> {
   }
 }
 
-void updater(String starttime, String endtime, int numberofslots){
+int updater(String starttime, String endtime, int numberofslots){
+  CollectionReference currentroom = FirebaseFirestore.instance.collection(selectedroomtype);
   //update data
   String currentslot = numberofslots.toString();
   bookedSlots[currentslot] = [starttime, endtime];
   numberofslots = numberofslots + 1;
 
-  squashrooms.doc(selectedroomid)
+  currentroom.doc(selectedroomid)
         .update({
           'bookedslots': bookedSlots,
           'numberofbookedslots': numberofslots,
         })
-        .then((value) => print("Data Updated"))
+        .then((value) => {
+          print("Data Updated. Room has been booked!"),
+        })
         .catchError(
-            (error) => print("Failed to updated data: $error"));
+            (error) => {
+          print("Failed to updated data: $error")
+        });
 }
 
 int micros = 1;
-void checker(String starttime, String endtime, int numberofslots){
+int checker(String starttime, String endtime, int numberofslots){
   var start = DateTime.parse(starttime);  
   //Adding microseconds to prevent isAfter from not working as intended
   start = start.add(new Duration(microseconds: micros));
@@ -166,9 +194,13 @@ void checker(String starttime, String endtime, int numberofslots){
   }
 
   if(flagRoom == -1){
-    updater(starttime, endtime, numberofslots);
+    if(updater(starttime, endtime, numberofslots) == 0){
+      return 0;
+    }
+    return 1;
   }
   else{
     print("Cannot be booked");
+    return 0;
   }
 }
