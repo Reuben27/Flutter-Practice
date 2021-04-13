@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "394888060349",
+    "project_id": "firestore-practice-ea4a8",
+    "storage_bucket": "firestore-practice-ea4a8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:394888060349:android:dffc023eca9902d7d946d4",
+        "android_client_info": {
+          "package_name": "com.example.flutter_practice_firestore"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "394888060349-bcj5e72e7bmd2s1n67eohg1ed0st97ss.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHg7C1W5DD85F0wE8igQRbBznL01T2ekI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "394888060349-bcj5e72e7bmd2s1n67eohg1ed0st97ss.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
