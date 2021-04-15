@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter_practice_firestore/screens/squashrooms.dart';
-import 'package:flutter_practice_firestore/screens/tabletennisrooms.dart';
+import 'package:flutter_practice_firestore/screens/squash.dart';
+import 'package:flutter_practice_firestore/screens/tabletennis.dart';
 
 String selectedsportid = "";
 String selectedroomid = "";
@@ -67,13 +66,13 @@ class _DisplayDataState extends State<DisplayData> {
                 if(document.data()['sportname'] == "Squash"){
                   selectedsportid = "squash";
                   Navigator.push(context, 
-                    MaterialPageRoute(builder: (context) => SquashRooms(),
+                    MaterialPageRoute(builder: (context) => Squash(),
                     ),
                   );
                 } else if(document.data()['sportname'] == "Table Tennis"){
                   selectedsportid = "tabletennis";
                   Navigator.push(context, 
-                    MaterialPageRoute(builder: (context) => TableTennisRooms(),
+                    MaterialPageRoute(builder: (context) => TableTennis(),
                     ),
                   );
                 }
