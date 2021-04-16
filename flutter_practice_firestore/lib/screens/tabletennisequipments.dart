@@ -3,12 +3,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_practice_firestore/screens/entry.dart';
 import 'package:flutter_practice_firestore/screens/sports.dart';
 
-class SquashEquipments extends StatefulWidget {
+class TableTennisEquipments extends StatefulWidget {
   @override
-  _SquashEquipmentsState createState() => _SquashEquipmentsState();
+  _TableTennisEquipmentsState createState() => _TableTennisEquipmentsState();
 }
 
-class _SquashEquipmentsState extends State<SquashEquipments> {
+class _TableTennisEquipmentsState extends State<TableTennisEquipments> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,10 +33,10 @@ class _DisplayDataState extends State<DisplayData> {
   
   @override
   Widget build(BuildContext context) {
-    CollectionReference squashequipments = FirebaseFirestore.instance.collection('SquashEquipments');
+    CollectionReference tabletennisequipments = FirebaseFirestore.instance.collection('TableTennisEquipments');
 
     return StreamBuilder<QuerySnapshot>(
-      stream: squashequipments.snapshots(),
+      stream: tabletennisequipments.snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError) {
           return Text('Something went wrong');
