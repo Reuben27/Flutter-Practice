@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 // ignore: implementation_imports
 import 'package:flutter/src/widgets/basic.dart';
 import 'package:date_format/date_format.dart';
+import 'package:flutter_practice_firestore/screens/sports.dart';
 import 'package:intl/intl.dart';
 
-class Booking extends StatelessWidget {
+class Entry extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,7 +53,7 @@ class _UserEntryState extends State<UserEntry> {
     if (picked != null)
       setState(() {
         selectedDate = picked;
-        _dateController.text = DateFormat.yMd().format(selectedDate);
+        _dateController.text = DateFormat.yMMMMd('en_US').format(selectedDate);
       });
   }
 
@@ -94,16 +95,22 @@ class _UserEntryState extends State<UserEntry> {
 
   @override
   void initState() {
-    _dateController.text = DateFormat.yMd().format(DateTime.now());
+    _dateController.text = DateFormat.yMMMMd('en_US').format(DateTime.now());
 
     _timeControllerEntry.text = formatDate(
         DateTime(2019, 08, 1, DateTime.now().hour, DateTime.now().minute),
         [hh, ':', nn, " ", am]).toString();
+
+    _timeControllerExit.text = formatDate(
+        DateTime(2019, 08, 1, DateTime.now().add(const Duration(minutes: 30)).hour, DateTime.now().add(const Duration(minutes: 30)).minute),
+        [hh, ':', nn, " ", am]).toString();
+
     super.initState();
   }
 
   // Create a text controller and use it to retrieve the current value of the TextField.
   final myController1 = TextEditingController(); // Name
+
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
@@ -115,7 +122,7 @@ class _UserEntryState extends State<UserEntry> {
 
   @override
   Widget build(BuildContext context) {
-    dateTime = DateFormat.yMd().format(DateTime.now());
+    dateTime = DateFormat.yMMMMd('en_US').format(DateTime.now());
     return Scaffold(
       body: Column(
         children: <Widget>[
@@ -123,7 +130,7 @@ class _UserEntryState extends State<UserEntry> {
             alignment: Alignment.center,
             padding: const EdgeInsets.all(16.0),
             child: Text(
-              '',
+              selectedequipmentname,
               textAlign: TextAlign.center,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
@@ -275,33 +282,49 @@ class _UserEntryState extends State<UserEntry> {
         // When the user presses the button, show an alert dialog containing the text that the user has entered into the text field.
         onPressed: () {
           print("");
-          print("");
           print("**************************");
-          print(_minuteEntry);
-          print(_timeEntry);
-          print(_timeExit);
-          print(selectedDate);
-          String newdate = DateFormat('yyyy-MM-dd').format(selectedDate);
-          print(newdate);
+          //print(_minuteEntry);
+          //print(_timeEntry);
+          //print(_timeExit);
+          //print(selectedDate);
+          
+          String entryTime = DateFormat('yyyy-MM-dd').format(selectedDate);
+          String exitTime = DateFormat('yyyy-MM-dd').format(selectedDate);
+          //print(entryTime);
+
           if(int.parse(_hourEntry) < 10){
-            newdate = newdate + " 0" + _hourEntry;
+            entryTime = entryTime + " 0" + _hourEntry;
           }
           else{
-            newdate = newdate + " " + _hourEntry;
+            entryTime = entryTime + " " + _hourEntry;
           }
 
           if(int.parse(_minuteEntry) < 10){
-            newdate = newdate + ":0" + _minuteEntry + ":" + "00.000";
+            entryTime = entryTime + ":0" + _minuteEntry + ":" + "00.000";
           }
           else{
-            newdate = newdate + ":" + _minuteEntry + ":" + "00.000";
+            entryTime = entryTime + ":" + _minuteEntry + ":" + "00.000";
+          }
+
+          if(int.parse(_hourExit) < 10){
+            exitTime = exitTime + " 0" + _hourExit;
+          }
+          else{
+            exitTime = exitTime + " " + _hourExit;
+          }
+
+          if(int.parse(_minuteExit) < 10){
+            exitTime = exitTime + ":0" + _minuteExit + ":" + "00.000";
+          }
+          else{
+            exitTime = exitTime + ":" + _minuteExit + ":" + "00.000";
           }
            
-          print(newdate);  
-          DateTime parser = DateTime.parse(newdate);
-          print(parser);        
+          print("Exit Time  " + exitTime);  
+          print("Entry Time " + entryTime);
+          //DateTime parser = DateTime.parse(exitTime);
+          //print(parser);        
           print("**************************");
-          print("");
           print("");
         },
         tooltip: 'Show me the value!',

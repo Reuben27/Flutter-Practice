@@ -58,10 +58,11 @@ class _DisplayDataState extends State<DisplayData> {
                 print(document.data()['name']);
                 print(document.data()['bookedslots']);
                 print(document.id);
+                selectedequipmentname = document.data()['name']; 
                 print("**************************");
                 print("");
                 Navigator.push(context, 
-                MaterialPageRoute(builder: (context) => UserEntry(),
+                MaterialPageRoute(builder: (context) => Entry(),
                 ),
               );
               },
