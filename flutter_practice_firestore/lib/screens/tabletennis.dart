@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_practice_firestore/screens/entry.dart';
 import 'package:flutter_practice_firestore/screens/tabletennisequipments.dart';
 import 'package:flutter_practice_firestore/screens/tabletennisrooms.dart';
 
@@ -58,7 +59,7 @@ class _RoomorEquipmentsState extends State<RoomorEquipments> {
           GestureDetector(
             onTap: (){
               Navigator.push(context, 
-                MaterialPageRoute(builder: (context) => TableTennisEquipments(),
+                MaterialPageRoute(builder: (context) => Entry(),
                 ),
               );
             },

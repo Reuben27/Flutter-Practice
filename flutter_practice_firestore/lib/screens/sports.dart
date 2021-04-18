@@ -7,7 +7,9 @@ String selectedsportid = "";
 String selectedroomid = "";
 String selectedroomname = "";
 String selectedroomtype = "";
+String selectedequipmentid = "";
 String selectedequipmentname = "";
+String selectedequipmenttype = "";
 
 class Sports extends StatefulWidget {
   @override

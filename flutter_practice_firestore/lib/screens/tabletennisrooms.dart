@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter_practice_firestore/screens/booking.dart';
+import 'package:flutter_practice_firestore/screens/roombooking.dart';
 import 'package:flutter_practice_firestore/screens/sports.dart';
 
 class TableTennisRooms extends StatefulWidget {

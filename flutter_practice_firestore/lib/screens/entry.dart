@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/basic.dart';
 import 'package:date_format/date_format.dart';
 import 'package:flutter_practice_firestore/screens/sports.dart';
+import 'package:flutter_practice_firestore/screens/squashequipments.dart';
+import 'package:flutter_practice_firestore/screens/tabletennisequipments.dart';
 import 'package:intl/intl.dart';
 
 class Entry extends StatelessWidget {
@@ -326,10 +328,23 @@ class _UserEntryState extends State<UserEntry> {
           //print(parser);        
           print("**************************");
           print("");
+          if(selectedsportid == "squash"){
+            Navigator.push(context, 
+              MaterialPageRoute(builder: (context) => SquashEquipments(),
+              ),
+            );
+          }
+          else{
+            Navigator.push(context, 
+              MaterialPageRoute(builder: (context) => TableTennisEquipments(),
+              ),
+            );
+          }
+          
         },
         tooltip: 'Show me the value!',
         child: Text(
-          'Book',
+          'Next',
         ),
       ),
     );

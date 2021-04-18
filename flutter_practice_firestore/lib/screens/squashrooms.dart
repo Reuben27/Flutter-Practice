@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_practice_firestore/screens/sports.dart';
-import 'package:flutter_practice_firestore/screens/booking.dart';
+import 'package:flutter_practice_firestore/screens/roombooking.dart';
 
 class SquashRooms extends StatefulWidget {
   @override
