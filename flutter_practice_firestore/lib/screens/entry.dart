@@ -7,6 +7,9 @@ import 'package:flutter_practice_firestore/screens/squashequipments.dart';
 import 'package:flutter_practice_firestore/screens/tabletennisequipments.dart';
 import 'package:intl/intl.dart';
 
+String entryTime = "";
+String exitTime = "";
+
 class Entry extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -132,7 +135,7 @@ class _UserEntryState extends State<UserEntry> {
             alignment: Alignment.center,
             padding: const EdgeInsets.all(16.0),
             child: Text(
-              selectedequipmentname,
+              selectedequipmenttype,
               textAlign: TextAlign.center,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
@@ -290,8 +293,8 @@ class _UserEntryState extends State<UserEntry> {
           //print(_timeExit);
           //print(selectedDate);
           
-          String entryTime = DateFormat('yyyy-MM-dd').format(selectedDate);
-          String exitTime = DateFormat('yyyy-MM-dd').format(selectedDate);
+          entryTime = DateFormat('yyyy-MM-dd').format(selectedDate);
+          exitTime = DateFormat('yyyy-MM-dd').format(selectedDate);
           //print(entryTime);
 
           if(int.parse(_hourEntry) < 10){
