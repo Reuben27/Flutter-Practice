@@ -6,9 +6,11 @@ import 'package:flutter_practice_firestore/screens/sports.dart';
 import 'package:flutter_practice_firestore/screens/squashequipments.dart';
 import 'package:flutter_practice_firestore/screens/tabletennisequipments.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter_practice_firestore/screens/checkavailability.dart';
 
 String entryTime = "";
 String exitTime = "";
+List<int> availability = [];
 
 class Entry extends StatelessWidget {
   @override
@@ -331,18 +333,43 @@ class _UserEntryState extends State<UserEntry> {
           //print(parser);        
           print("**************************");
           print("");
-          if(selectedsportid == "squash"){
-            Navigator.push(context, 
-              MaterialPageRoute(builder: (context) => SquashEquipments(),
-              ),
-            );
-          }
-          else{
-            Navigator.push(context, 
-              MaterialPageRoute(builder: (context) => TableTennisEquipments(),
-              ),
-            );
-          }
+
+          availability = checkavailability(entryTime, exitTime);
+
+          if(availability.isNotEmpty){
+            if(selectedsportid == "squash"){
+              Navigator.push(context, 
+                MaterialPageRoute(builder: (context) => SquashEquipments(),
+                ),
+              );
+            }
+            else{
+              Navigator.push(context, 
+                MaterialPageRoute(builder: (context) => TableTennisEquipments(),
+                ),
+              );
+            }
+          } else{
+            Future.delayed(const Duration(milliseconds: 2000), () {
+              // Here you can write your code
+              print("delayed");
+              setState(() {
+                if(selectedsportid == "squash"){
+                  Navigator.push(context, 
+                    MaterialPageRoute(builder: (context) => SquashEquipments(),
+                    ),
+                  );
+                }
+                else{
+                  Navigator.push(context, 
+                    MaterialPageRoute(builder: (context) => TableTennisEquipments(),
+                    ),
+                  );
+                }
+              });
+
+              });
+            }
           
         },
         tooltip: 'Show me the value!',
@@ -353,3 +380,5 @@ class _UserEntryState extends State<UserEntry> {
     );
   }
 }
+
+
