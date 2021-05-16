@@ -333,7 +333,7 @@ class _UserEntryState extends State<UserEntry> {
           //print(parser);        
           print("**************************");
           print("");
-
+          availability = [];
           availability = checkavailability(entryTime, exitTime);
 
           if(availability.isNotEmpty){
@@ -350,7 +350,7 @@ class _UserEntryState extends State<UserEntry> {
               );
             }
           } else{
-            Future.delayed(const Duration(milliseconds: 2000), () {
+            Future.delayed(const Duration(milliseconds: 4000), () {
               // Here you can write your code
               print("delayed");
               setState(() {

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_practice_firestore/screens/entry.dart';
+import 'package:flutter_practice_firestore/screens/equipmenttimeentry.dart';
 import 'package:flutter_practice_firestore/screens/tabletennisequipments.dart';
 import 'package:flutter_practice_firestore/screens/tabletennisrooms.dart';
+import 'package:flutter_practice_firestore/screens/sports.dart';
 
 class TableTennis extends StatefulWidget {
   @override
@@ -58,6 +59,7 @@ class _RoomorEquipmentsState extends State<RoomorEquipments> {
           ),
           GestureDetector(
             onTap: (){
+              selectedequipmenttype = "TableTennisEquipments";
               Navigator.push(context, 
                 MaterialPageRoute(builder: (context) => Entry(),
                 ),

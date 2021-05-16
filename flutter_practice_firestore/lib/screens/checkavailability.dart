@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_practice_firestore/screens/sports.dart';
 
 int micros = 1;
 List<int> availability = [];
@@ -6,7 +7,7 @@ List<int> availability = [];
 //Squash Ball, Squash Racket
 
 List<int> checkavailability(starttime, endtime){
-  CollectionReference tabletennisequipments = FirebaseFirestore.instance.collection('TableTennisEquipments');
+  CollectionReference equipments = FirebaseFirestore.instance.collection(selectedequipmenttype);
   var start = DateTime.parse(starttime);  
   //Adding microseconds to prevent isAfter from not working as intended
   start = start.add(new Duration(microseconds: micros));
@@ -18,8 +19,11 @@ List<int> checkavailability(starttime, endtime){
   micros += 1;
   print("Time Slots: " + starttime + " to " + endtime);
 
-  tabletennisequipments.get().then((QuerySnapshot querySnapshot){
+  equipments.get().then((QuerySnapshot querySnapshot){
     querySnapshot.docs.forEach((doc){
+      print("");
+      print("*******************************************");
+      print("");
       print("Checking for " + doc['name']);
       //print(doc['name'] + " " + doc['totalquantity'].toString());
       //print(doc['bookedslots']);
@@ -40,6 +44,11 @@ List<int> checkavailability(starttime, endtime){
       print("");
       */
 
+      print("*******************");
+      print(selectedequipmenttype);
+      print("*******************");
+
+
       for(int j = 0; j < n; j++){
         /*
         print("Hey");
@@ -57,6 +66,10 @@ List<int> checkavailability(starttime, endtime){
           } 
         }
       }
+
+      print("*******************");
+      print(selectedequipmenttype);
+      print("*******************");
 
       print("For the chosen time slot, the quantity available is - " + currentquantity.toString());
       print(" ");

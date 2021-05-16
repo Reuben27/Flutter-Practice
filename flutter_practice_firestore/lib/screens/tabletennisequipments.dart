@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter_practice_firestore/screens/entry.dart';
+import 'package:flutter_practice_firestore/screens/equipmenttimeentry.dart';
 import 'package:flutter_practice_firestore/screens/sports.dart';
 
 class TableTennisEquipments extends StatefulWidget {
@@ -30,14 +30,11 @@ class DisplayData extends StatefulWidget {
 }
 
 class _DisplayDataState extends State<DisplayData> {
-  final myController = TextEditingController(); // Name
-
   var controllers = [TextEditingController(), TextEditingController()];
   
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
-    myController.dispose();  
     controllers[0].dispose();
     controllers[1].dispose();  
     super.dispose();
@@ -81,15 +78,17 @@ class _DisplayDataState extends State<DisplayData> {
                     ),
                   //subtitle: new Text(document.data()['description']),
                 )),
-                TextFormField(
-                  controller: controllers[document.data()['availabilityindex']],
-                  decoration: const InputDecoration(
-                    hintText: 'Enter Quantity',
-                  ),
+                Container(
+                  margin: EdgeInsets.fromLTRB(15.0, 15.0, 15.0, 0),
+                  child: TextFormField(
+                    controller: controllers[document.data()['availabilityindex']],
+                    decoration: const InputDecoration(
+                      hintText: 'Enter Quantity',
+                    ),
+                  )
                 )]
               ),
-            )
-            ;
+            );
           }).toList(),  
         );
       },
