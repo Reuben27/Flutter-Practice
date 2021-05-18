@@ -10,7 +10,7 @@ import 'package:flutter_practice_firestore/screens/checkavailability.dart';
 
 String entryTime = "";
 String exitTime = "";
-List<int> availability = [];
+List<int> availability_1 = [];
 
 class Entry extends StatelessWidget {
   @override
@@ -127,6 +127,74 @@ class _UserEntryState extends State<UserEntry> {
     super.dispose();
   }
 
+
+
+  onPressFunc() async {
+    print("");
+    print("**************************");
+    //print(_minuteEntry);
+    //print(_timeEntry);
+    //print(_timeExit);
+    //print(selectedDate);
+    
+    entryTime = DateFormat('yyyy-MM-dd').format(selectedDate);
+    exitTime = DateFormat('yyyy-MM-dd').format(selectedDate);
+    //print(entryTime);
+
+    if(int.parse(_hourEntry) < 10){
+      entryTime = entryTime + " 0" + _hourEntry;
+    }
+    else{
+      entryTime = entryTime + " " + _hourEntry;
+    }
+
+    if(int.parse(_minuteEntry) < 10){
+      entryTime = entryTime + ":0" + _minuteEntry + ":" + "00.000";
+    }
+    else{
+      entryTime = entryTime + ":" + _minuteEntry + ":" + "00.000";
+    }
+
+    if(int.parse(_hourExit) < 10){
+      exitTime = exitTime + " 0" + _hourExit;
+    }
+    else{
+      exitTime = exitTime + " " + _hourExit;
+    }
+
+    if(int.parse(_minuteExit) < 10){
+      exitTime = exitTime + ":0" + _minuteExit + ":" + "00.000";
+    }
+    else{
+      exitTime = exitTime + ":" + _minuteExit + ":" + "00.000";
+    }
+      
+    print("Exit Time  " + exitTime);  
+    print("Entry Time " + entryTime);
+    //DateTime parser = DateTime.parse(exitTime);
+    //print(parser);        
+    print("**************************");
+    print("");
+    availability_1 = [];
+    availability_1 = await checkavailability(entryTime, exitTime);
+    print("**************************");
+    print( availability_1);
+    if(availability_1.isNotEmpty){
+      if(selectedsportid == "squash"){
+        Navigator.push(context, 
+          MaterialPageRoute(builder: (context) => SquashEquipments(),
+          ),
+        );
+      }
+      else{
+        Navigator.push(context, 
+          MaterialPageRoute(builder: (context) => TableTennisEquipments(),
+          ),
+        );
+      }
+    } 
+  }
+  
   @override
   Widget build(BuildContext context) {
     dateTime = DateFormat.yMMMMd('en_US').format(DateTime.now());
@@ -287,91 +355,11 @@ class _UserEntryState extends State<UserEntry> {
       ),
       floatingActionButton: FloatingActionButton(
         // When the user presses the button, show an alert dialog containing the text that the user has entered into the text field.
-        onPressed: () {
-          print("");
-          print("**************************");
-          //print(_minuteEntry);
-          //print(_timeEntry);
-          //print(_timeExit);
-          //print(selectedDate);
-          
-          entryTime = DateFormat('yyyy-MM-dd').format(selectedDate);
-          exitTime = DateFormat('yyyy-MM-dd').format(selectedDate);
-          //print(entryTime);
-
-          if(int.parse(_hourEntry) < 10){
-            entryTime = entryTime + " 0" + _hourEntry;
-          }
-          else{
-            entryTime = entryTime + " " + _hourEntry;
-          }
-
-          if(int.parse(_minuteEntry) < 10){
-            entryTime = entryTime + ":0" + _minuteEntry + ":" + "00.000";
-          }
-          else{
-            entryTime = entryTime + ":" + _minuteEntry + ":" + "00.000";
-          }
-
-          if(int.parse(_hourExit) < 10){
-            exitTime = exitTime + " 0" + _hourExit;
-          }
-          else{
-            exitTime = exitTime + " " + _hourExit;
-          }
-
-          if(int.parse(_minuteExit) < 10){
-            exitTime = exitTime + ":0" + _minuteExit + ":" + "00.000";
-          }
-          else{
-            exitTime = exitTime + ":" + _minuteExit + ":" + "00.000";
-          }
-           
-          print("Exit Time  " + exitTime);  
-          print("Entry Time " + entryTime);
-          //DateTime parser = DateTime.parse(exitTime);
-          //print(parser);        
-          print("**************************");
-          print("");
-          availability = [];
-          availability = checkavailability(entryTime, exitTime);
-
-          if(availability.isNotEmpty){
-            if(selectedsportid == "squash"){
-              Navigator.push(context, 
-                MaterialPageRoute(builder: (context) => SquashEquipments(),
-                ),
-              );
-            }
-            else{
-              Navigator.push(context, 
-                MaterialPageRoute(builder: (context) => TableTennisEquipments(),
-                ),
-              );
-            }
-          } else{
-            Future.delayed(const Duration(milliseconds: 4000), () {
-              // Here you can write your code
-              print("delayed");
-              setState(() {
-                if(selectedsportid == "squash"){
-                  Navigator.push(context, 
-                    MaterialPageRoute(builder: (context) => SquashEquipments(),
-                    ),
-                  );
-                }
-                else{
-                  Navigator.push(context, 
-                    MaterialPageRoute(builder: (context) => TableTennisEquipments(),
-                    ),
-                  );
-                }
-              });
-
-              });
-            }
-          
-        },
+        onPressed: ()async{
+          print("Aaaaaaaa");
+          await onPressFunc();
+          print("BBBBBBB");
+        }  ,
         tooltip: 'Show me the value!',
         child: Text(
           'Next',

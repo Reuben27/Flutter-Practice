@@ -69,7 +69,7 @@ class _DisplayDataState extends State<DisplayData> {
                   color: Colors.blue[200],
                   child: ListTile(
                   title: new Text(
-                    document.data()['name'] + " " + availability[document.data()['availabilityindex']].toString() , 
+                    document.data()['name'] + " " + availability_1[document.data()['availabilityindex']].toString() , 
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.white, 
