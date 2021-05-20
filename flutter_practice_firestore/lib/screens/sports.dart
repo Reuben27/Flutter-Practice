@@ -10,6 +10,11 @@ String selectedroomtype = "";
 String selectedequipmentid = "";
 String selectedequipmentname = "";
 String selectedequipmenttype = "";
+List<int> orders = [];
+Map<String, List> equipmentsname = {
+  "squash": ["Squash Balls", "Squash Rackets"],
+  "tabletennis": ["Table Tennis Balls", "Table Tennis Rackets"],
+};
 
 class Sports extends StatefulWidget {
   @override

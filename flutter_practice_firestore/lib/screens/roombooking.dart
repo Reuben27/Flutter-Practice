@@ -368,6 +368,7 @@ int updater(String starttime, String endtime, int numberofslots){
   String currentslot = numberofslots.toString();
   bookedSlots[currentslot] = [starttime, endtime];
   numberofslots = numberofslots + 1;
+  int flagi = 1;
 
   currentroom.doc(selectedroomid)
         .update({
@@ -379,8 +380,11 @@ int updater(String starttime, String endtime, int numberofslots){
         })
         .catchError(
             (error) => {
-          print("Failed to updated data: $error")
+          print("Failed to updated data: $error"),
+          flagi = 0,
         });
+  
+  return flagi;
 }
 
 int micros = 1;

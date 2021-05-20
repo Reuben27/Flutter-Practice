@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_practice_firestore/screens/equipmenttimeentry.dart';
+import 'package:flutter_practice_firestore/screens/orderconfirmation.dart';
 import 'package:flutter_practice_firestore/screens/sports.dart';
+
+var controllers = [TextEditingController(), TextEditingController()];
 
 class TableTennisEquipments extends StatefulWidget {
   @override
@@ -19,6 +22,27 @@ class _TableTennisEquipmentsState extends State<TableTennisEquipments> {
       body: Center(
         child: DisplayData(),
       ),
+      floatingActionButton: FloatingActionButton(
+        // When the user presses the button, show an alert dialog containing the text that the user has entered into the text field.
+        onPressed: (){
+          orders = [];
+          String order1 = controllers[0].text;
+          String order2 = controllers[1].text;
+          int or1 = int.parse(order1);
+          int or2 = int.parse(order2);
+          orders.add(or1);
+          orders.add(or2);
+          print(orders);
+          Navigator.push(context, 
+            MaterialPageRoute(builder: (context) => OrderConfirmation(),
+            ),
+          );
+        }  ,
+        tooltip: 'Show me the value!',
+        child: Text(
+          'Next',
+        ),
+      ),
     );
   }
 }
@@ -30,8 +54,7 @@ class DisplayData extends StatefulWidget {
 }
 
 class _DisplayDataState extends State<DisplayData> {
-  var controllers = [TextEditingController(), TextEditingController()];
-  
+   
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
@@ -42,7 +65,7 @@ class _DisplayDataState extends State<DisplayData> {
 
   
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {   
     CollectionReference tabletennisequipments = FirebaseFirestore.instance.collection('TableTennisEquipments');
 
     return StreamBuilder<QuerySnapshot>(
@@ -62,6 +85,7 @@ class _DisplayDataState extends State<DisplayData> {
           children: snapshot.data.docs.map((DocumentSnapshot document) {
             return GestureDetector(
               onTap: () {
+                print("Hey");
               },
               child: Column(                
                 children: [Container(
