@@ -12,8 +12,8 @@ String selectedequipmentname = "";
 String selectedequipmenttype = "";
 List<int> orders = [];
 Map<String, List> equipmentsname = {
-  "squash": ["Squash Balls", "Squash Rackets"],
-  "tabletennis": ["Table Tennis Balls", "Table Tennis Rackets"],
+  "squash": ["SquashBalls", "SquashRackets"],
+  "tabletennis": ["TableTennisBalls", "TableTennisRackets"],
 };
 
 class Sports extends StatefulWidget {
