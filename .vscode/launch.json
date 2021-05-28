@@ -1,0 +1,56 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "brew_crew",
+            "cwd": "brew_crew",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "crypto_wallet",
+            "cwd": "crypto_wallet",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "flutter_practice_datetimepicker",
+            "cwd": "flutter_practice_datetimepicker",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "flutter_practice_firestore",
+            "cwd": "flutter_practice_firestore",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "flutter_practice_googlemap",
+            "cwd": "flutter_practice_googlemap",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "flutter_practice_googlesheet",
+            "cwd": "flutter_practice_googlesheet",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "flutter_practice_userauthentication",
+            "cwd": "flutter_practice_userauthentication",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "instagram_stories",
+            "cwd": "instagram_stories",
+            "request": "launch",
+            "type": "dart"
+        }
+    ]
+}
